@@ -57,6 +57,7 @@ export default function createRenderer(
     // use a flat cache object with pure string references
     // to achieve maximal lookup performance and memoization speed
     cache: {},
+    propCache: {},
 
     renderRule(rule: Function, props: Object = {}): string {
       const processedStyle = processStyleWithPlugins(
@@ -195,6 +196,7 @@ export default function createRenderer(
       renderer.uniqueRuleIdentifier = 0
       renderer.uniqueKeyframeIdentifier = 0
       renderer.cache = {}
+      renderer.propCache = {}
 
       renderer._emitChange({ type: CLEAR_TYPE })
     },
@@ -247,6 +249,7 @@ export default function createRenderer(
               generateClassName(++renderer.uniqueRuleIdentifier)
 
             renderer.cache[declarationReference] = className
+            renderer.propCache[className] = property
 
             const cssDeclaration = cssifyDeclaration(property, value)
             const selector = generateCSSSelector(className, pseudo)
