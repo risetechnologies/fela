@@ -249,7 +249,7 @@ export default function createRenderer(
               generateClassName(++renderer.uniqueRuleIdentifier)
 
             renderer.cache[declarationReference] = className
-            renderer.propCache[className] = property
+            renderer.propCache[className] = media + pseudo + property
 
             const cssDeclaration = cssifyDeclaration(property, value)
             const selector = generateCSSSelector(className, pseudo)
