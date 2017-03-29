@@ -248,7 +248,7 @@ export default function createRenderer(
               )
 
             renderer.cache[declarationReference] = className
-            renderer.propCache[className] = media + pseudo + property
+            renderer.propCache[className] = property
 
             const cssDeclaration = cssifyDeclaration(property, value)
             const selector = generateCSSSelector(className, pseudo)
