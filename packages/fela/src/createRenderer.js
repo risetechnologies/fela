@@ -60,6 +60,7 @@ export default function createRenderer(
     // use a flat cache object with pure string references
     // to achieve maximal lookup performance and memoization speed
     cache: {},
+    propCache: {},
 
     getNextRuleIdentifier() {
       return ++renderer.uniqueRuleIdentifier
@@ -190,6 +191,7 @@ export default function createRenderer(
       renderer.uniqueRuleIdentifier = 0
       renderer.uniqueKeyframeIdentifier = 0
       renderer.cache = {}
+      renderer.propCache = {}
 
       renderer._emitChange({
         type: CLEAR_TYPE
@@ -278,6 +280,7 @@ export default function createRenderer(
               support
             }
 
+            if (!pseudo && !media) renderer.propCache[className] = property
             renderer.cache[declarationReference] = change
             renderer._emitChange(change)
           }
