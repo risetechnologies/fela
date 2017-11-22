@@ -69,6 +69,7 @@ export default function createRenderer(
     // use a flat cache object with pure string references
     // to achieve maximal lookup performance and memoization speed
     cache: {},
+    propCache: {},
 
     getNextRuleIdentifier() {
       return ++renderer.uniqueRuleIdentifier
@@ -179,6 +180,7 @@ export default function createRenderer(
       renderer.uniqueRuleIdentifier = 0
       renderer.uniqueKeyframeIdentifier = 0
       renderer.cache = {}
+      renderer.propCache = {}
 
       renderer._emitChange({
         type: CLEAR_TYPE,
@@ -282,6 +284,7 @@ Check http://fela.js.org/docs/basics/Rules.html#styleobject for more information
               support,
             }
 
+            if (!pseudo && !media) renderer.propCache[className] = property
             renderer.cache[declarationReference] = change
             renderer._emitChange(change)
           }
