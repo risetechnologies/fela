@@ -1,6 +1,6 @@
 {
   "name": "fela",
-  "version": "11.2.0",
+  "version": "11.2.0-rise+1",
   "description": "State-Driven Styling in JavaScript",
   "typings": "index.d.ts",
   "main": "lib/index.js",
